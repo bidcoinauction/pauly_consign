@@ -422,27 +422,18 @@
 
     // --- Main ---
     async function loadCards() {
-      // Option A (easy editing in THIS file): use embedded JSON below.
-      // Option B (even easier): create a cards.json next to this HTML and it will auto-load it.
-      //   - This lets you edit data without touching the HTML.
-      //   - If cards.json is missing, we fall back to embedded data.
-      try {
-        const res = await fetch("cards_deduped.json", { cache: "no-store" });
-        if (res.ok) {
-          const json = await res.json();
-          if (Array.isArray(json)) return json;
-        }
-      } catch (e) {}
-
-      // secondary: cards.json (legacy name)
-      try {
-        const res2 = await fetch("cards.json", { cache: "no-store" });
-        if (res2.ok) {
-          const json2 = await res2.json();
-          if (Array.isArray(json2)) return json2;
-        }
-      } catch (e) {}
-
+      // Preferred: external JSON next to this HTML (easiest to edit)
+      const candidates = ["cards_updated.json", "cards_deduped.json", "cards.json"];
+      for (const fname of candidates) {
+        try {
+          const res = await fetch(fname, { cache: "no-store" });
+          if (res.ok) {
+            const json = await res.json();
+            if (Array.isArray(json)) return json;
+          }
+        } catch (e) {}
+      }
+      // Fallback: embedded data (always works offline)
       const embedded = JSON.parse(document.getElementById("card-data").textContent);
       return embedded;
     }
@@ -517,7 +508,8 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-4_0002_Layer%204.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-5_0002_Layer%205.jpg"
     ],
-    "originalId": "card_001"
+    "originalId": "card_001",
+    "previousId": "card_001"
   },
   {
     "id": "card_002",
@@ -525,7 +517,29 @@
     "player": "Liel Abada",
     "set": "Topps Finest MLS",
     "league": "MLS",
-    "season": "",
+    "season": "2023-2024",
+    "cardNumber": "",
+    "features": "",
+    "serialNumber": "",
+    "grade": "",
+    "condition": "",
+    "quantity": "2",
+    "value": "",
+    "notes": "",
+    "images": [
+      "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-4_0001_Layer%205.jpg",
+      "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-5_0001_Layer%206.jpg"
+    ],
+    "originalId": "card_002",
+    "previousId": "card_002"
+  },
+  {
+    "id": "card_003",
+    "title": "2024 Topps Finest MLS Finest Debuts FD7 Kerwin Vargas",
+    "player": "Kerwin Vargas",
+    "set": "Topps Finest MLS",
+    "league": "MLS",
+    "season": "2024",
     "cardNumber": "",
     "features": "",
     "serialNumber": "",
@@ -535,31 +549,11 @@
     "value": "",
     "notes": "",
     "images": [
-      "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-4_0001_Layer%205.jpg",
-      "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-5_0001_Layer%206.jpg"
-    ],
-    "originalId": "card_002"
-  },
-  {
-    "id": "card_003",
-    "title": "2024 Topps Finest MLS Finest Debuts FD7 Kerwin Vargas",
-    "player": "Kerwin Vargas",
-    "set": "Topps Finest MLS",
-    "league": "MLS",
-    "season": "",
-    "cardNumber": "",
-    "features": "",
-    "serialNumber": "",
-    "grade": "",
-    "condition": "",
-    "quantity": "",
-    "value": "",
-    "notes": "",
-    "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-12_0009_Layer%2097.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-12_0003_Layer%20103.jpg"
     ],
-    "originalId": "card_003"
+    "originalId": "card_003",
+    "previousId": "card_003"
   },
   {
     "id": "card_004",
@@ -573,14 +567,15 @@
     "serialNumber": "",
     "grade": "",
     "condition": "",
-    "quantity": "",
+    "quantity": "2",
     "value": "",
     "notes": "",
     "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled_set__0009_Layer%2014.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/tavares.png"
     ],
-    "originalId": "card_004"
+    "originalId": "card_004",
+    "previousId": "card_004"
   },
   {
     "id": "card_005",
@@ -594,14 +589,15 @@
     "serialNumber": "",
     "grade": "",
     "condition": "",
-    "quantity": "",
+    "quantity": "4",
     "value": "",
     "notes": "",
     "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled_set__0012_Layer%2011.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled_set__0017_Layer%206.jpg"
     ],
-    "originalId": "card_005"
+    "originalId": "card_005",
+    "previousId": "card_005"
   },
   {
     "id": "card_006",
@@ -622,7 +618,8 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-10_0008_Layer%2085.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-10_0002_Layer%2091.jpg"
     ],
-    "originalId": "card_006"
+    "originalId": "card_006",
+    "previousId": "card_006"
   },
   {
     "id": "card_007",
@@ -643,7 +640,8 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-10_0011_Layer%2082.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-10_0005_Layer%2088.jpg"
     ],
-    "originalId": "card_007"
+    "originalId": "card_007",
+    "previousId": "card_007"
   },
   {
     "id": "card_008",
@@ -664,7 +662,8 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-10_0010_Layer%2083.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-10_0004_Layer%2089.jpg"
     ],
-    "originalId": "card_008"
+    "originalId": "card_008",
+    "previousId": "card_008"
   },
   {
     "id": "card_009",
@@ -685,7 +684,8 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-9_0010_Layer%2082.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-9_0003_Layer%2089.jpg"
     ],
-    "originalId": "card_009"
+    "originalId": "card_009",
+    "previousId": "card_009"
   },
   {
     "id": "card_010",
@@ -693,20 +693,21 @@
     "player": "Lucho Acosta",
     "set": "Topps Finest MLS",
     "league": "MLS",
-    "season": "",
+    "season": "2024",
     "cardNumber": "",
     "features": "",
     "serialNumber": "",
     "grade": "",
     "condition": "",
-    "quantity": "",
+    "quantity": "1",
     "value": "",
     "notes": "",
     "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-14_0009_Layer%20121.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-14_0003_Layer%20127.jpg"
     ],
-    "originalId": "card_010"
+    "originalId": "card_010",
+    "previousId": "card_010"
   },
   {
     "id": "card_011",
@@ -727,7 +728,8 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/firstin%20_0000_Layer%2027.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/firstin%20_0005_Layer%2022.jpg"
     ],
-    "originalId": "card_011"
+    "originalId": "card_011",
+    "previousId": "card_011"
   },
   {
     "id": "card_012",
@@ -748,7 +750,8 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/oilspills_0002_Layer%206.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-1_0039_Layer%209.jpg"
     ],
-    "originalId": "card_013"
+    "originalId": "card_013",
+    "previousId": "card_012"
   },
   {
     "id": "card_013",
@@ -762,11 +765,12 @@
     "serialNumber": "",
     "grade": "",
     "condition": "",
-    "quantity": "",
+    "quantity": "1",
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_014"
+    "originalId": "card_014",
+    "previousId": "card_013"
   },
   {
     "id": "card_014",
@@ -787,7 +791,8 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/firstin%20_0016_Layer%2018.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/firstin%20_0015_Layer%2019.jpg"
     ],
-    "originalId": "card_015"
+    "originalId": "card_015",
+    "previousId": "card_014"
   },
   {
     "id": "card_015",
@@ -808,7 +813,8 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-4_0005_Layer%201.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-5_0005_Layer%202.jpg"
     ],
-    "originalId": "card_016"
+    "originalId": "card_016",
+    "previousId": "card_015"
   },
   {
     "id": "card_016",
@@ -829,7 +835,8 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/nexr_0009_Layer%2041.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/nexr_0001_Layer%2049.jpg"
     ],
-    "originalId": "card_017"
+    "originalId": "card_017",
+    "previousId": "card_016"
   },
   {
     "id": "card_017",
@@ -850,7 +857,8 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-8_0008_Layer%2072.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-8_0003_Layer%2077.jpg"
     ],
-    "originalId": "card_018"
+    "originalId": "card_018",
+    "previousId": "card_017"
   },
   {
     "id": "card_018",
@@ -864,17 +872,18 @@
     "serialNumber": "",
     "grade": "",
     "condition": "",
-    "quantity": "",
+    "quantity": "2",
     "value": "",
     "notes": "",
     "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-15_0010_Layer%20121.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-15_0004_Layer%20127.jpg"
     ],
-    "originalId": "card_019"
+    "originalId": "card_019",
+    "previousId": "card_018"
   },
   {
-    "id": "card_020",
+    "id": "card_019",
     "title": "2024 Topps Finest MLS Lucho Acosta Orange Refractor Autograph",
     "player": "Lucho Acosta",
     "set": "2024 Topps Finest MLS",
@@ -891,10 +900,11 @@
     "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-2_0003_Layer%203.jpg"
     ],
-    "originalId": "card_021"
+    "originalId": "card_021",
+    "previousId": "card_020"
   },
   {
-    "id": "card_021",
+    "id": "card_020",
     "title": "2024 Topps Finest MLS Luis Suarez Gold Refractor",
     "player": "Luis Suarez",
     "set": "2024 Topps Finest MLS",
@@ -911,10 +921,11 @@
     "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-11_0010_Layer%2095.jpg"
     ],
-    "originalId": "card_022"
+    "originalId": "card_022",
+    "previousId": "card_021"
   },
   {
-    "id": "card_022",
+    "id": "card_021",
     "title": "2024 Topps Finest MLS Prized Footballers Fusion #PFF10 Marco Reus Yellow/Red Insert",
     "player": "Marco Reus",
     "set": "Topps Finest MLS",
@@ -932,10 +943,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-8_0006_Layer%2074.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-8_0001_Layer%2079.jpg"
     ],
-    "originalId": "card_023"
+    "originalId": "card_023",
+    "previousId": "card_022"
   },
   {
-    "id": "card_023",
+    "id": "card_022",
     "title": "2024 Topps Finest MLS #132 Andre Blake Red Refractor Philadelphia Union",
     "player": "Andre Blake",
     "set": "Topps Finest MLS",
@@ -953,10 +965,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/andre_blake_0001_Layer%201.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/andre_blake_0000_Layer%202.jpg"
     ],
-    "originalId": "card_024"
+    "originalId": "card_024",
+    "previousId": "card_023"
   },
   {
-    "id": "card_024",
+    "id": "card_023",
     "title": "2024 Topps Finest MLS Autographs #BABC Benja Cremaschi Auto Inter Miami",
     "player": "Benja Cremaschi",
     "set": "Topps Finest MLS",
@@ -974,10 +987,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-3_0002_Layer%206.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Benja_auto_back_0000_Layer%201.jpg"
     ],
-    "originalId": "card_025"
+    "originalId": "card_025",
+    "previousId": "card_024"
   },
   {
-    "id": "card_025",
+    "id": "card_024",
     "title": "2024 Topps Finest MLS Pop Art #PA14 Zlatan Ibrahimovic Insert LA Galaxy",
     "player": "Zlatan Ibrahimovic",
     "set": "Topps Finest MLS",
@@ -995,10 +1009,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-8_0009_Layer%2071.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-8_0004_Layer%2076.jpg"
     ],
-    "originalId": "card_026"
+    "originalId": "card_026",
+    "previousId": "card_025"
   },
   {
-    "id": "card_027",
+    "id": "card_025",
     "title": "2024 Topps Chrome MLS #33 Nouhou Red Refractor Seattle Sounders",
     "player": "Nouhou",
     "set": "Topps Finest MLS",
@@ -1016,10 +1031,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/nouhou_0000_Layer%202.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/nouhou_0001_Layer%201.jpg"
     ],
-    "originalId": "card_028"
+    "originalId": "card_028",
+    "previousId": "card_027"
   },
   {
-    "id": "card_028",
+    "id": "card_026",
     "title": "2024-25 Topps UEFA Ultimate Stage Chrome #USC16 Lionel Messi Inter Miami",
     "player": "Lionel Messi",
     "set": "Topps Finest MLS",
@@ -1037,10 +1053,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-11_0009_Layer%2096.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-11_0003_Layer%20102.jpg"
     ],
-    "originalId": "card_029"
+    "originalId": "card_029",
+    "previousId": "card_028"
   },
   {
-    "id": "card_029",
+    "id": "card_027",
     "title": "2024 Topps Finest MLS Team Logo #TL12 LA Galaxy Relic",
     "player": "La Galaxy",
     "set": "Topps Finest MLS",
@@ -1058,10 +1075,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-9_0008_Layer%2084.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-9_0002_Layer%2090.jpg"
     ],
-    "originalId": "card_030"
+    "originalId": "card_030",
+    "previousId": "card_029"
   },
   {
-    "id": "card_030",
+    "id": "card_028",
     "title": "2024 Topps Finest MLS #210 Rafael Navarro Oil Spill Refractor Colorado Rapids",
     "player": "Rafael Navarro",
     "set": "Topps Finest MLS",
@@ -1072,17 +1090,18 @@
     "serialNumber": "",
     "grade": "",
     "condition": "",
-    "quantity": "",
+    "quantity": "1",
     "value": "",
     "notes": "",
     "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-1_0047_Layer%201.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-1_0041_Layer%207.jpg"
     ],
-    "originalId": "card_031"
+    "originalId": "card_031",
+    "previousId": "card_030"
   },
   {
-    "id": "card_031",
+    "id": "card_029",
     "title": "2024 Topps Finest MLS #47 Diogo Goncalves Gold Refractor /50 New England",
     "player": "Diogo Goncalves",
     "set": "Topps Finest MLS",
@@ -1100,10 +1119,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-1_0042_Layer%206.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-1_0037_Layer%2011.jpg"
     ],
-    "originalId": "card_032"
+    "originalId": "card_032",
+    "previousId": "card_031"
   },
   {
-    "id": "card_032",
+    "id": "card_030",
     "title": "2024 Topps Finest MLS #145 Cody Baker Gold Refractor /50 Real Salt Lake",
     "player": "Cody Baker",
     "set": "Topps Finest MLS",
@@ -1121,10 +1141,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-1_0044_Layer%204.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-1_0038_Layer%2010.jpg"
     ],
-    "originalId": "card_033"
+    "originalId": "card_033",
+    "previousId": "card_032"
   },
   {
-    "id": "card_033",
+    "id": "card_031",
     "title": "2024 Topps Finest MLS Riqui Puig Neon Green Refractor /99 LA Galaxy",
     "player": "Riqui Puig",
     "set": "Topps Finest MLS",
@@ -1142,10 +1163,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-9_0006_Layer%2086.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-16_0003_Layer%20140.jpg"
     ],
-    "originalId": "card_034"
+    "originalId": "card_034",
+    "previousId": "card_033"
   },
   {
-    "id": "card_034",
+    "id": "card_032",
     "title": "2024 Topps Finest MLS Zlatan Ibrahimovic LA Galaxy",
     "player": "Zlatan Ibrahimovic",
     "set": "Topps Finest MLS",
@@ -1156,17 +1178,18 @@
     "serialNumber": "",
     "grade": "",
     "condition": "",
-    "quantity": "",
+    "quantity": "1",
     "value": "",
     "notes": "",
     "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-20_0007_Layer%20173.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-20_0001_Layer%20179.jpg"
     ],
-    "originalId": "card_036"
+    "originalId": "card_036",
+    "previousId": "card_034"
   },
   {
-    "id": "card_035",
+    "id": "card_033",
     "title": "2024 Topps Finest MLS Lionel Messi Inter Miami",
     "player": "Lionel Messi",
     "set": "Topps Finest MLS",
@@ -1184,10 +1207,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-20_0009_Layer%20171.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-20_0003_Layer%20177.jpg"
     ],
-    "originalId": "card_037"
+    "originalId": "card_037",
+    "previousId": "card_035"
   },
   {
-    "id": "card_036",
+    "id": "card_034",
     "title": "2024 Topps Finest MLS Luis Suarez Inter Miami",
     "player": "Luis Suarez",
     "set": "Topps Finest MLS",
@@ -1205,10 +1229,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-20_0010_Layer%20170.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-20_0004_Layer%20176.jpg"
     ],
-    "originalId": "card_038"
+    "originalId": "card_038",
+    "previousId": "card_036"
   },
   {
-    "id": "card_037",
+    "id": "card_035",
     "title": "2024 Topps Finest MLS Gabriel Pec",
     "player": "Gabriel Pec",
     "set": "Topps Finest MLS",
@@ -1226,10 +1251,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-20_0006_Layer%20174.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-20_0000_Layer%20180.jpg"
     ],
-    "originalId": "card_039"
+    "originalId": "card_039",
+    "previousId": "card_037"
   },
   {
-    "id": "card_038",
+    "id": "card_036",
     "title": "2024 Topps Finest MLS Joseph Paintsil",
     "player": "Joseph Paintsil",
     "set": "Topps Finest MLS",
@@ -1247,10 +1273,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-20_0008_Layer%20172.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-20_0002_Layer%20178.jpg"
     ],
-    "originalId": "card_040"
+    "originalId": "card_040",
+    "previousId": "card_038"
   },
   {
-    "id": "card_039",
+    "id": "card_037",
     "title": "2024 Topps Finest MLS Pedro de La Vega",
     "player": "Pedro de La Vega",
     "set": "Topps Finest MLS",
@@ -1268,10 +1295,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-21_0007_Layer%20174.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-21_0001_Layer%20180.jpg"
     ],
-    "originalId": "card_041"
+    "originalId": "card_041",
+    "previousId": "card_039"
   },
   {
-    "id": "card_040",
+    "id": "card_038",
     "title": "2024 Topps Finest MLS Omar Campos",
     "player": "Omar Campos",
     "set": "Topps Finest MLS",
@@ -1289,10 +1317,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-20_0011_Layer%20169.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-20_0005_Layer%20175.jpg"
     ],
-    "originalId": "card_042"
+    "originalId": "card_042",
+    "previousId": "card_040"
   },
   {
-    "id": "card_041",
+    "id": "card_039",
     "title": "2024 Topps Finest MLS Santiago Rodriguez",
     "player": "Santiago Rodriguez",
     "set": "Topps Finest MLS",
@@ -1310,10 +1339,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-21_0006_Layer%20175.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-21_0000_Layer%20181.jpg"
     ],
-    "originalId": "card_043"
+    "originalId": "card_043",
+    "previousId": "card_041"
   },
   {
-    "id": "card_042",
+    "id": "card_040",
     "title": "2024 Topps Finest MLS Sebastian Driussi",
     "player": "Sebastian Driussi",
     "set": "Topps Finest MLS",
@@ -1331,10 +1361,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-12_0010_Layer%2096.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-12_0004_Layer%20102.jpg"
     ],
-    "originalId": "card_044"
+    "originalId": "card_044",
+    "previousId": "card_042"
   },
   {
-    "id": "card_043",
+    "id": "card_041",
     "title": "2024 Topps Finest MLS Cristian Arango",
     "player": "Cristian Arango",
     "set": "Topps Finest MLS",
@@ -1352,10 +1383,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-12_0011_Layer%2095.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-12_0005_Layer%20101.jpg"
     ],
-    "originalId": "card_045"
+    "originalId": "card_045",
+    "previousId": "card_043"
   },
   {
-    "id": "card_044",
+    "id": "card_042",
     "title": "2024 Topps Finest MLS Diego Luna",
     "player": "Diego Luna",
     "set": "Topps Finest MLS",
@@ -1373,10 +1405,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-18_0007_Layer%20149.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-18_0001_Layer%20155.jpg"
     ],
-    "originalId": "card_046"
+    "originalId": "card_046",
+    "previousId": "card_044"
   },
   {
-    "id": "card_045",
+    "id": "card_043",
     "title": "2024 Topps Finest MLS Hugo Cuypers",
     "player": "Hugo Cuypers",
     "set": "Topps Finest MLS",
@@ -1394,10 +1427,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-18_0008_Layer%20148.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-18_0002_Layer%20154.jpg"
     ],
-    "originalId": "card_047"
+    "originalId": "card_047",
+    "previousId": "card_045"
   },
   {
-    "id": "card_046",
+    "id": "card_044",
     "title": "2024 Topps Finest MLS 45 Cody Baker Checkerboard",
     "player": "Cody Baker",
     "set": "Topps Finest MLS",
@@ -1408,17 +1442,18 @@
     "serialNumber": "",
     "grade": "",
     "condition": "",
-    "quantity": "",
+    "quantity": "1",
     "value": "",
     "notes": "",
     "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-12_0006_Layer%20100.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-12_0000_Layer%20106.jpg"
     ],
-    "originalId": "card_048"
+    "originalId": "card_048",
+    "previousId": "card_046"
   },
   {
-    "id": "card_047",
+    "id": "card_045",
     "title": "2024 Topps Finest MLS 145 Cody Baker Refractor",
     "player": "Cody Baker",
     "set": "Topps Finest MLS",
@@ -1436,10 +1471,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-12_0007_Layer%2099.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-12_0001_Layer%20105.jpg"
     ],
-    "originalId": "card_049"
+    "originalId": "card_049",
+    "previousId": "card_047"
   },
   {
-    "id": "card_048",
+    "id": "card_046",
     "title": "2024 Topps Finest MLS 94 Lewis Morgan Checkerboard",
     "player": "Lewis Morgan",
     "set": "Topps Finest MLS",
@@ -1457,10 +1493,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-12_0008_Layer%2098.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-12_0002_Layer%20104.jpg"
     ],
-    "originalId": "card_050"
+    "originalId": "card_050",
+    "previousId": "card_048"
   },
   {
-    "id": "card_049",
+    "id": "card_047",
     "title": "2024 Topps Finest MLS 249 Robin Lod Oil Spill Refractor",
     "player": "Robin Lod",
     "set": "Topps Finest MLS",
@@ -1478,10 +1515,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-15_0007_Layer%20124.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-15_0001_Layer%20130.jpg"
     ],
-    "originalId": "card_051"
+    "originalId": "card_051",
+    "previousId": "card_049"
   },
   {
-    "id": "card_050",
+    "id": "card_048",
     "title": "2024 Topps Finest MLS 285 Zardes Refractor",
     "player": "Gyasi Zardes",
     "set": "Topps Finest MLS",
@@ -1499,10 +1537,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-15_0011_Layer%20120.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-15_0005_Layer%20126.jpg"
     ],
-    "originalId": "card_052"
+    "originalId": "card_052",
+    "previousId": "card_050"
   },
   {
-    "id": "card_051",
+    "id": "card_049",
     "title": "2024 Topps Finest MLS 32 Osman Bukari Refractor",
     "player": "Osman Bukari",
     "set": "Topps Finest MLS",
@@ -1520,10 +1559,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-15_0008_Layer%20123.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-15_0002_Layer%20129.jpg"
     ],
-    "originalId": "card_053"
+    "originalId": "card_053",
+    "previousId": "card_051"
   },
   {
-    "id": "card_052",
+    "id": "card_050",
     "title": "2024 Topps Finest MLS Prized Footballers PF12 Lucho Acosta",
     "player": "Lucho Acosta",
     "set": "Topps Finest MLS",
@@ -1534,17 +1574,18 @@
     "serialNumber": "",
     "grade": "",
     "condition": "",
-    "quantity": "",
+    "quantity": "1",
     "value": "",
     "notes": "",
     "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-17_0008_Layer%20147.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-17_0002_Layer%20153.jpg"
     ],
-    "originalId": "card_054"
+    "originalId": "card_054",
+    "previousId": "card_052"
   },
   {
-    "id": "card_053",
+    "id": "card_051",
     "title": "2024 Topps Finest MLS Prized Footballers PF19 Nimfasha Berchimas",
     "player": "Nimfasha Berchimas",
     "set": "Topps Finest MLS",
@@ -1562,10 +1603,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-17_0007_Layer%20148.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-17_0001_Layer%20154.jpg"
     ],
-    "originalId": "card_055"
+    "originalId": "card_055",
+    "previousId": "card_053"
   },
   {
-    "id": "card_054",
+    "id": "card_052",
     "title": "2024 Topps Finest MLS Prized Footballers PF20 Gabriel Pec",
     "player": "Gabriel Pec",
     "set": "Topps Finest MLS",
@@ -1576,17 +1618,18 @@
     "serialNumber": "",
     "grade": "",
     "condition": "",
-    "quantity": "",
+    "quantity": "1",
     "value": "",
     "notes": "",
     "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-17_0011_Layer%20144.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-17_0005_Layer%20150.jpg"
     ],
-    "originalId": "card_056"
+    "originalId": "card_056",
+    "previousId": "card_054"
   },
   {
-    "id": "card_055",
+    "id": "card_053",
     "title": "2024 Topps Finest MLS Prized Footballers PF23 Joseph Paintsil",
     "player": "Joseph Paintsil",
     "set": "Topps Finest MLS",
@@ -1597,17 +1640,18 @@
     "serialNumber": "",
     "grade": "",
     "condition": "",
-    "quantity": "",
+    "quantity": "1",
     "value": "",
     "notes": "",
     "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-17_0009_Layer%20146.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-17_0003_Layer%20152.jpg"
     ],
-    "originalId": "card_057"
+    "originalId": "card_057",
+    "previousId": "card_055"
   },
   {
-    "id": "card_056",
+    "id": "card_054",
     "title": "2024 Topps Finest MLS 290 Quinn Sullivan Oil Spill Refractor",
     "player": "Quinn Sullivan",
     "set": "Topps Finest MLS",
@@ -1625,10 +1669,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-14_0008_Layer%20122.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-14_0002_Layer%20128.jpg"
     ],
-    "originalId": "card_058"
+    "originalId": "card_058",
+    "previousId": "card_056"
   },
   {
-    "id": "card_057",
+    "id": "card_055",
     "title": "2024 Topps Finest MLS Finest Dominators DO10 Sergio Busquets",
     "player": "Sergio Busquets",
     "set": "Topps Finest MLS",
@@ -1646,10 +1691,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-18_0006_Layer%20150.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-18_0000_Layer%20156.jpg"
     ],
-    "originalId": "card_059"
+    "originalId": "card_059",
+    "previousId": "card_057"
   },
   {
-    "id": "card_058",
+    "id": "card_056",
     "title": "2024 Topps Finest MLS 222 Jack Mcglynn Oil Spill Refractor",
     "player": "Jack Mcglynn",
     "set": "Topps Finest MLS",
@@ -1667,10 +1713,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-14_0007_Layer%20123.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-14_0001_Layer%20129.jpg"
     ],
-    "originalId": "card_060"
+    "originalId": "card_060",
+    "previousId": "card_058"
   },
   {
-    "id": "card_059",
+    "id": "card_057",
     "title": "2024 Topps Finest MLS 211 Ryan Gauld Oil Spill Refractor",
     "player": "Ryan Gauld",
     "set": "Topps Finest MLS",
@@ -1681,17 +1728,18 @@
     "serialNumber": "",
     "grade": "",
     "condition": "",
-    "quantity": "",
+    "quantity": "1",
     "value": "",
     "notes": "",
     "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-14_0006_Layer%20124.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-14_0000_Layer%20130.jpg"
     ],
-    "originalId": "card_061"
+    "originalId": "card_061",
+    "previousId": "card_059"
   },
   {
-    "id": "card_060",
+    "id": "card_058",
     "title": "2024 Topps Finest MLS 269 Cristian Espinoza Oil Spill Refractor",
     "player": "Cristian Espinoza",
     "set": "Topps Finest MLS",
@@ -1709,10 +1757,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-14_0011_Layer%20119.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-14_0005_Layer%20125.jpg"
     ],
-    "originalId": "card_062"
+    "originalId": "card_062",
+    "previousId": "card_060"
   },
   {
-    "id": "card_061",
+    "id": "card_059",
     "title": "2024 Topps Finest MLS 96 Benja Cremaschi Checkerboard",
     "player": "Benja Cremaschi",
     "set": "Topps Finest MLS",
@@ -1730,10 +1779,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-14_0010_Layer%20120.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-14_0004_Layer%20126.jpg"
     ],
-    "originalId": "card_063"
+    "originalId": "card_063",
+    "previousId": "card_061"
   },
   {
-    "id": "card_062",
+    "id": "card_060",
     "title": "2024 Topps Finest MLS 30 Gabriel Pec",
     "player": "Gabriel Pec",
     "set": "Topps Finest MLS",
@@ -1744,17 +1794,18 @@
     "serialNumber": "",
     "grade": "",
     "condition": "",
-    "quantity": "",
+    "quantity": "2",
     "value": "",
     "notes": "",
     "images": [
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-16_0006_Layer%20137.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-16_0000_Layer%20143.jpg"
     ],
-    "originalId": "card_065"
+    "originalId": "card_065",
+    "previousId": "card_062"
   },
   {
-    "id": "card_063",
+    "id": "card_061",
     "title": "2024 Topps Finest MLS 263 Diego Fagundez Oil Spill Refractor",
     "player": "Diego Fagundez",
     "set": "Topps Finest MLS",
@@ -1772,10 +1823,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-16_0011_Layer%20132.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-9_0005_Layer%2087.jpg"
     ],
-    "originalId": "card_066"
+    "originalId": "card_066",
+    "previousId": "card_063"
   },
   {
-    "id": "card_064",
+    "id": "card_062",
     "title": "2024 Topps Finest MLS 100 Riqui Puig Refractor",
     "player": "Riqui Puig",
     "set": "Topps Finest MLS",
@@ -1793,10 +1845,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-16_0010_Layer%20133.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-16_0004_Layer%20139.jpg"
     ],
-    "originalId": "card_067"
+    "originalId": "card_067",
+    "previousId": "card_064"
   },
   {
-    "id": "card_065",
+    "id": "card_063",
     "title": "2024 Finest MLS Daniel Gazdag #217 Oil Spill Refractor",
     "player": "Daniel Gazdag",
     "set": "2024 Topps Finest MLS",
@@ -1814,10 +1867,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/nexr_0007_Layer%2043.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/nexr_0003_Layer%2047.jpg"
     ],
-    "originalId": "card_068"
+    "originalId": "card_068",
+    "previousId": "card_065"
   },
   {
-    "id": "card_066",
+    "id": "card_064",
     "title": "2024 Finest MLS Marco Reus #277 Oil Spill Refractor",
     "player": "Marco Reus",
     "set": "2024 Topps Finest MLS",
@@ -1835,10 +1889,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/SCN20250517214949571%204.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/SCN20250517215126245%205.jpg"
     ],
-    "originalId": "card_069"
+    "originalId": "card_069",
+    "previousId": "card_066"
   },
   {
-    "id": "card_067",
+    "id": "card_065",
     "title": "2024 Finest MLS Maya Yoshida #264 Oil Spill Refractor",
     "player": "Maya Yoshida",
     "set": "2024 Topps Finest MLS",
@@ -1856,10 +1911,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/oilspills_0000_Layer%208.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/oilspills_0005_Layer%203.jpg"
     ],
-    "originalId": "card_070"
+    "originalId": "card_070",
+    "previousId": "card_067"
   },
   {
-    "id": "card_069",
+    "id": "card_066",
     "title": "2024 Finest MLS Marco Reus #PA9 Pop Art Insert",
     "player": "Marco Reus",
     "set": "2024 Topps Finest MLS",
@@ -1877,10 +1933,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/firstin%20_0014_Layer%2020.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/firstin%20_0012_Layer%2034.jpg"
     ],
-    "originalId": "card_072"
+    "originalId": "card_072",
+    "previousId": "card_069"
   },
   {
-    "id": "card_070",
+    "id": "card_067",
     "title": "2024 Topps Finest MLS Prized Footballers #PF-21",
     "player": "Marco Reus",
     "set": "2024 Topps Finest MLS",
@@ -1895,10 +1952,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_073"
+    "originalId": "card_073",
+    "previousId": "card_070"
   },
   {
-    "id": "card_071",
+    "id": "card_068",
     "title": "2024 Finest MLS Clint Dempsey #PA4 Pop Art Insert",
     "player": "Clint Dempsey",
     "set": "2024 Topps Finest MLS",
@@ -1916,10 +1974,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/firstin%20_0021_Layer%2013.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/firstin%20_0013_Layer%2028.jpg"
     ],
-    "originalId": "card_074"
+    "originalId": "card_074",
+    "previousId": "card_071"
   },
   {
-    "id": "card_072",
+    "id": "card_069",
     "title": "2023 Chrome MLS Connor Ronan #113 Aqua Lava Refractor",
     "player": "Connor Ronan",
     "set": "2023 Topps Chrome MLS",
@@ -1937,10 +1996,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-4_0003_Layer%203.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/connor-back.png"
     ],
-    "originalId": "card_075"
+    "originalId": "card_075",
+    "previousId": "card_072"
   },
   {
-    "id": "card_073",
+    "id": "card_070",
     "title": "2024 Finest MLS Christian Benteke #PFF5 Orange/Red Prized Footballers",
     "player": "Christian Benteke",
     "set": "2024 Topps Finest MLS",
@@ -1958,10 +2018,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/nexr_0008_Layer%2042.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/nexr_0004_Layer%2046.jpg"
     ],
-    "originalId": "card_076"
+    "originalId": "card_076",
+    "previousId": "card_073"
   },
   {
-    "id": "card_074",
+    "id": "card_071",
     "title": "2024 Finest MLS Ted Ku-DiPietro #73 Gold Refractor",
     "player": "Ted KU-DiPietro",
     "set": "2024 Topps Finest MLS",
@@ -1979,10 +2040,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/nexr_0006_Layer%2044.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/nexr_0002_Layer%2048.jpg"
     ],
-    "originalId": "card_077"
+    "originalId": "card_077",
+    "previousId": "card_074"
   },
   {
-    "id": "card_075",
+    "id": "card_072",
     "title": "2024 Finest MLS Gabriel Pirani #79 Neon Green Refractor RC",
     "player": "Gabriel Pirani",
     "set": "2024 Topps Finest MLS",
@@ -2000,10 +2062,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/nexr_0005_Layer%2045.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/nexr_0000_Layer%2050.jpg"
     ],
-    "originalId": "card_078"
+    "originalId": "card_078",
+    "previousId": "card_075"
   },
   {
-    "id": "card_076",
+    "id": "card_073",
     "title": "2024 Topps Finest MLS Finest Fabrics Relics #FFRP Riqui Puig Gold Refractor LA Galaxy",
     "player": "Riqui Puig",
     "set": "Topps Finest MLS",
@@ -2021,10 +2084,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Puig_Jersey_0000_Layer%201.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Puig_Jersey_0001_Layer%202.jpg"
     ],
-    "originalId": "card_081"
+    "originalId": "card_081",
+    "previousId": "card_076"
   },
   {
-    "id": "card_077",
+    "id": "card_074",
     "title": "2024 Topps Finest MLS Autographs #BADF Diego Fagundez Auto Austin FC",
     "player": "Diego Fagundez",
     "set": "Topps Finest MLS",
@@ -2042,10 +2106,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-3_0005_Layer%203.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-9_0005_Layer%2087.jpg"
     ],
-    "originalId": "card_087"
+    "originalId": "card_087",
+    "previousId": "card_077"
   },
   {
-    "id": "card_078",
+    "id": "card_075",
     "title": "2024 Topps Finest MLS #210 Rafael Navarro Oil Spill Refractor Colorado Rapids",
     "player": "Rafael Navarro",
     "set": "Topps Finest MLS",
@@ -2063,10 +2128,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/card%20matcher/Untitled-1_0047_Layer%201.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/card%20matcher/Untitled-1_0041_Layer%207.jpg"
     ],
-    "originalId": "card_089"
+    "originalId": "card_089",
+    "previousId": "card_078"
   },
   {
-    "id": "card_079",
+    "id": "card_076",
     "title": "2024 Topps Finest MLS #145 Cody Baker Gold Refractor /50 Real Salt Lake",
     "player": "Cody Baker",
     "set": "Topps Finest MLS",
@@ -2084,10 +2150,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/card%20matcher/Untitled-1_0044_Layer%204.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/card%20matcher/Untitled-1_0038_Layer%2010.jpg"
     ],
-    "originalId": "card_090"
+    "originalId": "card_090",
+    "previousId": "card_079"
   },
   {
-    "id": "card_080",
+    "id": "card_077",
     "title": "2024 Topps Finest MLS Prized Footballers PF25 Alexey Miranchuk",
     "player": "Alexey Miranchuk",
     "set": "Topps Finest MLS",
@@ -2102,10 +2169,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_091"
+    "originalId": "card_091",
+    "previousId": "card_080"
   },
   {
-    "id": "card_081",
+    "id": "card_078",
     "title": "2024 Topps Finest MLS Prized Footballers PF2 Riqui Puig",
     "player": "Riqui Puig",
     "set": "Topps Finest MLS",
@@ -2123,10 +2191,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-17_0010_Layer%20145.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-17_0004_Layer%20151.jpg"
     ],
-    "originalId": "card_112"
+    "originalId": "card_112",
+    "previousId": "card_081"
   },
   {
-    "id": "card_082",
+    "id": "card_079",
     "title": "2024 Topps Finest MLS 202 Riqui Puig Oil Spill Refractor",
     "player": "Riqui Puig",
     "set": "Topps Finest MLS",
@@ -2144,10 +2213,11 @@
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-16_0009_Layer%20134.jpg",
       "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-9_0000_Layer%2092.jpg"
     ],
-    "originalId": "card_124"
+    "originalId": "card_124",
+    "previousId": "card_082"
   },
   {
-    "id": "card_083",
+    "id": "card_080",
     "title": "2024 Topps Finest MLS Finest Dominators DO3 Christian Benteke",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2162,10 +2232,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_125"
+    "originalId": "card_125",
+    "previousId": "card_083"
   },
   {
-    "id": "card_084",
+    "id": "card_081",
     "title": "2024 Topps Finest MLS Finest Dominators DO5 Lucho Acosta",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2180,10 +2251,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_126"
+    "originalId": "card_126",
+    "previousId": "card_084"
   },
   {
-    "id": "card_085",
+    "id": "card_082",
     "title": "2024 Topps Finest MLS Finest Dominators DO7 Hector Herrera",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2198,10 +2270,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_127"
+    "originalId": "card_127",
+    "previousId": "card_085"
   },
   {
-    "id": "card_086",
+    "id": "card_083",
     "title": "2024 Topps Finest MLS Finest Debuts FD2 Pedro de La Vega",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2216,10 +2289,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_128"
+    "originalId": "card_128",
+    "previousId": "card_086"
   },
   {
-    "id": "card_087",
+    "id": "card_084",
     "title": "2024 Topps Finest MLS Finest Debuts FD9 Omar Campos",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2234,10 +2308,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_129"
+    "originalId": "card_129",
+    "previousId": "card_087"
   },
   {
-    "id": "card_088",
+    "id": "card_085",
     "title": "2024 Topps Finest MLS Finest Debuts FD3 Luis Suarez",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2252,28 +2327,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_130"
+    "originalId": "card_130",
+    "previousId": "card_088"
   },
   {
-    "id": "card_089",
-    "title": "2024 Topps Finest MLS Finest Debuts FD5 Zlatan Ibrahimovic",
-    "player": "",
-    "set": "Topps Finest MLS",
-    "league": "MLS",
-    "season": "2024",
-    "cardNumber": "",
-    "features": "",
-    "serialNumber": "",
-    "grade": "",
-    "condition": "",
-    "quantity": "1",
-    "value": "",
-    "notes": "",
-    "images": [],
-    "originalId": "card_131"
-  },
-  {
-    "id": "card_090",
+    "id": "card_086",
     "title": "2024 Topps Finest MLS Finest Debuts FD8 Julian Fernandez",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2288,10 +2346,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_132"
+    "originalId": "card_132",
+    "previousId": "card_090"
   },
   {
-    "id": "card_091",
+    "id": "card_087",
     "title": "2024 Topps Finest MLS Finest Debuts FD14 Santiago Rodriguez",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2306,10 +2365,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_133"
+    "originalId": "card_133",
+    "previousId": "card_091"
   },
   {
-    "id": "card_092",
+    "id": "card_088",
     "title": "2024 Topps Finest MLS Finest Debuts FD10 Joseph Paintsil",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2324,10 +2384,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_134"
+    "originalId": "card_134",
+    "previousId": "card_092"
   },
   {
-    "id": "card_093",
+    "id": "card_089",
     "title": "2024 Topps Finest MLS Finest Debuts FD11 Gabriel Pec",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2342,28 +2403,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_135"
+    "originalId": "card_135",
+    "previousId": "card_093"
   },
   {
-    "id": "card_094",
-    "title": "2024 Topps Finest MLS Prized Footballers PF12 Lucho Acosta",
-    "player": "",
-    "set": "Topps Finest MLS",
-    "league": "MLS",
-    "season": "2024",
-    "cardNumber": "",
-    "features": "",
-    "serialNumber": "",
-    "grade": "",
-    "condition": "",
-    "quantity": "1",
-    "value": "",
-    "notes": "",
-    "images": [],
-    "originalId": "card_136"
-  },
-  {
-    "id": "card_095",
+    "id": "card_090",
     "title": "2024 Topps Finest MLS Prized Footballers PF7 Hugo Cuypers",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2378,10 +2422,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_137"
+    "originalId": "card_137",
+    "previousId": "card_095"
   },
   {
-    "id": "card_096",
+    "id": "card_091",
     "title": "2024 Topps Finest MLS Prized Footballers PF24 Sebastian Driussi",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2396,46 +2441,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_138"
+    "originalId": "card_138",
+    "previousId": "card_096"
   },
   {
-    "id": "card_097",
-    "title": "2024 Topps Finest MLS Prized Footballers PF23 Joseph Paintsil",
-    "player": "",
-    "set": "Topps Finest MLS",
-    "league": "MLS",
-    "season": "2024",
-    "cardNumber": "",
-    "features": "",
-    "serialNumber": "",
-    "grade": "",
-    "condition": "",
-    "quantity": "1",
-    "value": "",
-    "notes": "",
-    "images": [],
-    "originalId": "card_139"
-  },
-  {
-    "id": "card_098",
-    "title": "2024 Topps Finest MLS Prized Footballers PF20 Gabriel Pec",
-    "player": "",
-    "set": "Topps Finest MLS",
-    "league": "MLS",
-    "season": "2024",
-    "cardNumber": "",
-    "features": "",
-    "serialNumber": "",
-    "grade": "",
-    "condition": "",
-    "quantity": "1",
-    "value": "",
-    "notes": "",
-    "images": [],
-    "originalId": "card_140"
-  },
-  {
-    "id": "card_099",
+    "id": "card_092",
     "title": "2024 Topps Finest MLS Prized Footballers PF13 Cristian Arango",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2450,10 +2460,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_141"
+    "originalId": "card_141",
+    "previousId": "card_099"
   },
   {
-    "id": "card_100",
+    "id": "card_093",
     "title": "2024 Topps Finest MLS 13 Luca Orellano Checkerboard",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2468,10 +2479,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_142"
+    "originalId": "card_142",
+    "previousId": "card_100"
   },
   {
-    "id": "card_101",
+    "id": "card_094",
     "title": "2024 Topps Finest MLS 91 Kevin Kelsy",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2486,10 +2498,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_143"
+    "originalId": "card_143",
+    "previousId": "card_101"
   },
   {
-    "id": "card_102",
+    "id": "card_095",
     "title": "2024 Topps Finest MLS 59 Kimani Stewart-Baynes Refractor",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2504,10 +2517,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_144"
+    "originalId": "card_144",
+    "previousId": "card_102"
   },
   {
-    "id": "card_103",
+    "id": "card_096",
     "title": "2024 Topps Finest MLS 87 Diego Luna Checkerboard",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2522,10 +2536,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_145"
+    "originalId": "card_145",
+    "previousId": "card_103"
   },
   {
-    "id": "card_104",
+    "id": "card_097",
     "title": "2024 Topps Finest MLS 64 Maya Yoshida Checkerboard",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2540,10 +2555,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_146"
+    "originalId": "card_146",
+    "previousId": "card_104"
   },
   {
-    "id": "card_105",
+    "id": "card_098",
     "title": "2024 Topps Finest MLS 38 Asier Illarramendi Checkerboard",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2558,10 +2574,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_147"
+    "originalId": "card_147",
+    "previousId": "card_105"
   },
   {
-    "id": "card_106",
+    "id": "card_099",
     "title": "2024 Topps Finest MLS 53 Ryan Gauld",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2576,10 +2593,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_148"
+    "originalId": "card_148",
+    "previousId": "card_106"
   },
   {
-    "id": "card_107",
+    "id": "card_100",
     "title": "2024 Topps Finest MLS 32 Osman Bukari",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2594,10 +2612,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_149"
+    "originalId": "card_149",
+    "previousId": "card_107"
   },
   {
-    "id": "card_108",
+    "id": "card_101",
     "title": "2024 Topps Finest MLS 49 Sang-Bin Jeong Checkerboard",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2612,10 +2631,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_150"
+    "originalId": "card_150",
+    "previousId": "card_108"
   },
   {
-    "id": "card_109",
+    "id": "card_102",
     "title": "2024 Topps Finest MLS 172 DeAndre Yedlin",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2630,10 +2650,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_151"
+    "originalId": "card_151",
+    "previousId": "card_109"
   },
   {
-    "id": "card_110",
+    "id": "card_103",
     "title": "2024 Topps Finest MLS 43 Alexey Miranchuk Checkerboard",
     "player": "Alexey Miranchuk",
     "set": "Topps Finest MLS",
@@ -2648,10 +2669,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_152"
+    "originalId": "card_152",
+    "previousId": "card_110"
   },
   {
-    "id": "card_111",
+    "id": "card_104",
     "title": "2024 Topps Finest MLS 67 Tim Ream",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2666,10 +2688,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_153"
+    "originalId": "card_153",
+    "previousId": "card_111"
   },
   {
-    "id": "card_112",
+    "id": "card_105",
     "title": "2024 Topps Finest MLS 89 Nimfasha Berchimas",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2684,28 +2707,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_154"
+    "originalId": "card_154",
+    "previousId": "card_112"
   },
   {
-    "id": "card_113",
-    "title": "2024 Topps Finest MLS 183 Kerwin Vargas",
-    "player": "",
-    "set": "Topps Finest MLS",
-    "league": "MLS",
-    "season": "2024",
-    "cardNumber": "",
-    "features": "",
-    "serialNumber": "",
-    "grade": "",
-    "condition": "",
-    "quantity": "1",
-    "value": "",
-    "notes": "",
-    "images": [],
-    "originalId": "card_155"
-  },
-  {
-    "id": "card_114",
+    "id": "card_106",
     "title": "2024 Topps Finest MLS 23 Adilson Malanda",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2720,10 +2726,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_156"
+    "originalId": "card_156",
+    "previousId": "card_114"
   },
   {
-    "id": "card_115",
+    "id": "card_107",
     "title": "2024 Topps Finest MLS 55 Federico Redondo",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2738,10 +2745,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_157"
+    "originalId": "card_157",
+    "previousId": "card_115"
   },
   {
-    "id": "card_116",
+    "id": "card_108",
     "title": "2024 Topps Finest MLS 15 Julian Hall",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2756,10 +2764,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_158"
+    "originalId": "card_158",
+    "previousId": "card_116"
   },
   {
-    "id": "card_117",
+    "id": "card_109",
     "title": "2024 Topps Finest MLS 39 Felipe Carballo Refractor",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2774,10 +2783,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_159"
+    "originalId": "card_159",
+    "previousId": "card_117"
   },
   {
-    "id": "card_118",
+    "id": "card_110",
     "title": "2024 Topps Finest MLS 21 Raul Ruidiaz Checkerboard",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2792,10 +2802,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_160"
+    "originalId": "card_160",
+    "previousId": "card_118"
   },
   {
-    "id": "card_119",
+    "id": "card_111",
     "title": "2024 Topps Finest MLS 24 Cristian Roldan",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2810,10 +2821,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_161"
+    "originalId": "card_161",
+    "previousId": "card_119"
   },
   {
-    "id": "card_120",
+    "id": "card_112",
     "title": "2024 Topps Finest MLS 82 Pedro de La Vega Checkerboard",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2828,10 +2840,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_162"
+    "originalId": "card_162",
+    "previousId": "card_120"
   },
   {
-    "id": "card_121",
+    "id": "card_113",
     "title": "2024 Topps Finest MLS 82 Pedro de La Vega",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2846,10 +2859,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_163"
+    "originalId": "card_163",
+    "previousId": "card_121"
   },
   {
-    "id": "card_122",
+    "id": "card_114",
     "title": "2024 Topps Finest MLS 174 Pedro de La Vega Checkerboard",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2864,10 +2878,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_164"
+    "originalId": "card_164",
+    "previousId": "card_122"
   },
   {
-    "id": "card_123",
+    "id": "card_115",
     "title": "2024 Topps Finest MLS 174 Pedro de La Vega",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2882,10 +2897,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_165"
+    "originalId": "card_165",
+    "previousId": "card_123"
   },
   {
-    "id": "card_124",
+    "id": "card_116",
     "title": "2024 Topps Finest MLS 45 Cody Baker",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2900,28 +2916,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_166"
+    "originalId": "card_166",
+    "previousId": "card_124"
   },
   {
-    "id": "card_125",
-    "title": "2024 Topps Finest MLS 45 Cody Baker Checkerboard",
-    "player": "",
-    "set": "Topps Finest MLS",
-    "league": "MLS",
-    "season": "2024",
-    "cardNumber": "",
-    "features": "",
-    "serialNumber": "",
-    "grade": "",
-    "condition": "",
-    "quantity": "1",
-    "value": "",
-    "notes": "",
-    "images": [],
-    "originalId": "card_167"
-  },
-  {
-    "id": "card_126",
+    "id": "card_117",
     "title": "2024 Topps Finest MLS 145 Cody Baker",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2936,10 +2935,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_168"
+    "originalId": "card_168",
+    "previousId": "card_126"
   },
   {
-    "id": "card_127",
+    "id": "card_118",
     "title": "2024 Topps Finest MLS 28 Joseph Paintsil",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2954,28 +2954,11 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_169"
+    "originalId": "card_169",
+    "previousId": "card_127"
   },
   {
-    "id": "card_128",
-    "title": "2024 Topps Finest MLS 30 Gabriel Pec",
-    "player": "",
-    "set": "Topps Finest MLS",
-    "league": "MLS",
-    "season": "2024",
-    "cardNumber": "",
-    "features": "",
-    "serialNumber": "",
-    "grade": "",
-    "condition": "",
-    "quantity": "2",
-    "value": "",
-    "notes": "",
-    "images": [],
-    "originalId": "card_170"
-  },
-  {
-    "id": "card_129",
+    "id": "card_119",
     "title": "2024 Topps Finest MLS 130 Gabriel Pec",
     "player": "",
     "set": "Topps Finest MLS",
@@ -2990,7 +2973,30 @@
     "value": "",
     "notes": "",
     "images": [],
-    "originalId": "card_171"
+    "originalId": "card_171",
+    "previousId": "card_129"
+  },
+  {
+    "id": "card_120",
+    "title": "2024 Topps Finest MLS SP #MLS9 Zlatan Ibrahimovic Short Print LA Galaxy",
+    "player": "Zlatan Ibrahimovic",
+    "set": "Topps Finest MLS",
+    "league": "MLS",
+    "season": "2023-24",
+    "cardNumber": "",
+    "features": "",
+    "serialNumber": "",
+    "grade": "",
+    "condition": "",
+    "quantity": "1",
+    "value": "",
+    "notes": "",
+    "images": [
+      "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-16_0007_Layer%20136.jpg",
+      "https://sportscards.standard.us-east-1.oortstorages.com/new%20card%20scans%202/card%20matcher/Untitled-16_0001_Layer%20142.jpg"
+    ],
+    "originalId": null,
+    "previousId": null
   }
 ]
   </script>
